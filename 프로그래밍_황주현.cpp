@@ -11,12 +11,12 @@
 #define TRUE 1
 #define FALSE 0
 
-void clearBuffer();
-int menu();
+void clearBuffer();		// 버퍼 정리
+int menu();			// 메뉴
 void spacePractice();		// 자리 연습
 void wordPractice();		// 단어 연습
 
-//void shortScript();		// 짧은글 연습
+void shortScript();		// 짧은글 연습
 //void longScript();		// 긴글 연습
 /*
 int getch(void)
@@ -134,7 +134,7 @@ void wordPractice()
 				acc = 100 - (100 * wrong / insert);
 			//system("clear");	// 리눅스 clear	
 			system("cls");
-			printf(">> 영문 타자 연습 프로그램 :  연습 <<\n");
+			printf(">> 영문 타자 연습 프로그램 : 낱말 연습 <<\n");
 			printf("진행도 : %d%%	오타수 : %d		정확도 : %d%%\n\n", (how * 100 / 20), wrong, acc);
 			puts(word[myWord]); // 개행 수정
 			fgets(input, sizeof(input), stdin);
@@ -152,6 +152,25 @@ void wordPractice()
 		}
 		if (!strcmp(input, "###"))
 			break;
+		how++;
+	}
+}
+
+void shortScript()
+{
+	int how, wrong, acc, insert, myWord;
+	wrong = how = insert = acc = myWord = 0;
+	char input[100] = {NULL};
+	char *sentence[30][] = {[0]="Hi my name is ABC", [1]="Hello I'm fine thank you", [2] = "I am a banana"};
+	
+	while (how <= 20)
+	{
+		while(1)
+		{
+			printf(">> 영문 타자 연습 프로그램 : 짧은 글 연습 <<\n");
+			printf("진행도 : %d%%	현재타수 : %d	최고타수 : %d	정확도 : %d%%\n\n", (how * 100 / 20), wrong, acc);
+
+		}
 		how++;
 	}
 }
