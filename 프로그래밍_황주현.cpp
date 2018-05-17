@@ -11,8 +11,11 @@
 #define TRUE 1
 #define FALSE 0
 
+void clearBuffer();
+int menu();
 void spacePractice();		// 자리 연습
 void wordPractice();		// 단어 연습
+
 //void shortScript();		// 짧은글 연습
 //void longScript();		// 긴글 연습
 /*
@@ -33,7 +36,7 @@ int getch(void)
 	return ch;
 }
 */					// 리눅스 getch()
-int menu();
+
 
 int main(void)
 {
@@ -41,17 +44,25 @@ int main(void)
 	return 0;
 }
 
+void clearBuffer()
+{
+	while (getchar() != '\n');
+}
+
 int menu()
 {
 	int input;
+	//system("clear");	// 리눅스 clear	
+	system("cls");
+	
 	printf(">> 영문 타자 연습 프로그램 <<\n");
 	printf("1) 자리 연습	2) 낱말 연습\n\
 3) 짧은 글 연습	4) 긴 글 연습\n\
 5) 프로그램 종료\n\n\
 번호를 선택하세요: ");
 	scanf("%d", &input);
-	fflush(stdin);
-
+	clearBuffer();
+	
 	switch (input)
 	{
 	case 1:
@@ -87,7 +98,8 @@ void spacePractice()
 			input = 0;
 			if (insert != 0)
 				acc = 100 - (100 * wrong / insert);
-			//system("clear");
+			//system("clear");	// 리눅스 clear	
+			system("cls");
 			printf(">> 영문 타자 연습 프로그램 : 자리 연습 <<\n");
 			printf("진행도 : %d%%	오타수 : %d		정확도 : %d%%\n\n", (how * 100 / 20), wrong, acc);
 			printf("%c\n-\n", word);
@@ -107,13 +119,11 @@ void spacePractice()
 void wordPractice()
 {
 	int how, wrong, acc, insert, myWord;
-	char *word[] = { "hello","hi","help" };
+	char *word[] = {"hello", "hi", "help"};
 	char input[20] = { NULL };
 
-
-
 	wrong = how = insert = acc = myWord = 0;
-
+	
 	while (how <= 20)
 	{
 		srand(time(NULL));
@@ -122,13 +132,14 @@ void wordPractice()
 		{
 			if (insert != 0)
 				acc = 100 - (100 * wrong / insert);
-			//system("clear");	
+			//system("clear");	// 리눅스 clear	
+			system("cls");
 			printf(">> 영문 타자 연습 프로그램 :  연습 <<\n");
 			printf("진행도 : %d%%	오타수 : %d		정확도 : %d%%\n\n", (how * 100 / 20), wrong, acc);
 			puts(word[myWord]); // 개행 수정
-			getchar();			// 개행 수정
 			fgets(input, sizeof(input), stdin);
-			if (input[strlen(input) - 1] = '\n')
+			
+			if (input[strlen(input) - 1] == '\n')
 				input[strlen(input) - 1] = '\0';
 			insert++;
 			if ((!strcmp(input, word[myWord])) || (!strcmp(input, "###")))
