@@ -3,14 +3,36 @@
 #include <string.h>
 #include <time.h>
 #include <conio.h>
-
+/*	리눅스 getch()
+#include <term.h>  
+#include <termios.h>  
+#include <unistd.h>  
+*/
 #define TRUE 1
 #define FALSE 0
 
 void spacePractice();		// 자리 연습
 void wordPractice();		// 단어 연습
-							//void shortScript();		// 짧은글 연습
-							//void longScript();		// 긴글 연습
+//void shortScript();		// 짧은글 연습
+//void longScript();		// 긴글 연습
+/*
+int getch(void)
+{
+	int ch;
+	struct termios buf;
+	struct termios save;
+
+	tcgetattr(0, &save);
+	buf = save;
+	buf.c_lflag &= ~(ICANON | ECHO);
+	buf.c_cc[VMIN] = 1;
+	buf.c_cc[VTIME] = 0;
+	tcsetattr(0, TCSAFLUSH, &buf);
+	ch = getchar();
+	tcsetattr(0, TCSAFLUSH, &save);
+	return ch;
+}
+*/					// 리눅스 getch()
 int menu();
 
 int main(void)
@@ -85,8 +107,8 @@ void spacePractice()
 void wordPractice()
 {
 	int how, wrong, acc, insert, myWord;
-	char *word[] = {"hello","hi","help"};
-	char input[20] = {NULL};
+	char *word[] = { "hello","hi","help" };
+	char input[20] = { NULL };
 
 
 
